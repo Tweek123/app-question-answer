@@ -1,42 +1,49 @@
 <template>
   <div class="wrapper">
-    <input class= "text-question"
-    v-model="textQ"
-    >
+
+    <div class="quetion-wrapper">
+          <div class= "text-question" ref="question" contenteditable="true"
+          
+           ></div>
+
+          <div class="button-wrapper">
+                  <button class="button-load-Image"
+                  v-on:mouseover="animateMouseOver"
+                  v-on:click="addImage">
+                  </button>
+                  <button 
+                  v-on:click="answerShow();animateRotate($event)" 
+                  v-on:mouseover="animateMouseOver"
+                  class = "button-answer-show">
+                  </button>
+                  <button 
+                  v-on:click="$emit('remove')"
+                  class = "delete-button"
+                  v-on:mouseover="animateMouseOver">
+                  </button>
+                  <button class="button-font-size-incr"
+                  v-on:mouseover="animateMouseOver"
+                  @mousedown="fontSizeIncr"
+                  @mouseup="mouseup=true;"
+                  ></button>
+                  <button class="button-font-size-decr"
+                  v-on:mouseover="animateMouseOver"
+                  @mousedown ="fontSizeDecr"
+                  @mouseup="mouseup=true;"
+                  ></button>
+          </div>
+    </div>
+
     <div v-on:keyup.delete="del=!del" ref="answer" contenteditable="true" class= "text-answer"
     v-show="answerVisible"
     v-bind:style="{ fontSize:fontSize+'px'}">
     {{text}}
-    <LoadImage v-on:delete-image="deleteImage" ref="abs" v-for="image in images" 
-    v-bind:key="image.id"
-    v-bind:ev ="del"
-    v-bind:id = "image.id">
-    </LoadImage>
-    </div>
-    <button class="button-load-Image"
-    v-on:mouseover="animateMouseOver"
-    v-on:click="addImage">
-    </button>
-    <button 
-    v-on:click="answerShow();animateRotate($event)" 
-    v-on:mouseover="animateMouseOver"
-    class = "button-answer-show">
-    </button>
-    <button 
-    v-on:click="$emit('remove')"
-    class = "delete-button"
-    v-on:mouseover="animateMouseOver">
-    </button>
-    <button class="button-font-size-incr"
-    v-on:mouseover="animateMouseOver"
-    @mousedown="fontSizeIncr"
-    @mouseup="mouseup=true;"
-    ></button>
-    <button class="button-font-size-decr"
-    v-on:mouseover="animateMouseOver"
-    @mousedown ="fontSizeDecr"
-    @mouseup="mouseup=true;"
-    ></button>
+        <LoadImage v-on:delete-image="deleteImage" ref="abs" v-for="image in images" 
+        v-bind:key="image.id"
+        v-bind:ev ="del"
+        v-bind:id = "image.id">
+        </LoadImage>
+    </div>      
   </div>
 </template>
   <script>
@@ -121,6 +128,17 @@ data() {
   }
   </script>
 <style>
+  .quetion-wrapper {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+  }
+  .button-wrapper {
+    
+    position: relative;
+    margin-left: auto;
+    width: 225px;
+  }
   .button-load-Image {
     position: absolute;
     background: url(../../img/addImage.svg) no-repeat;
@@ -176,10 +194,13 @@ data() {
     font-size: inherit !important; 
   }
   .text-question {
-    height: 70px;
-    resize: vertical;
+    border: none;
+    min-height: 70px;
     font-size: 30px;
-    width: 100%;
+    width: 85vw;
+    padding: 20px 0;
+    overflow: hidden;
+    resize: none;
   }
   .button-answer-show {
     position: absolute;
@@ -198,4 +219,12 @@ data() {
     display: flex;
     flex-direction: column;
   }
+
+@media (max-width: 850px) {
+  .text-question {width: 70vw;}
+}
+
+@media (max-width: 600px) {
+  .text-question {width: 60vw;}
+}
 </style>

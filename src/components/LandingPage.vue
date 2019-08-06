@@ -65,6 +65,8 @@ import {TweenMax, Power2, TimelineLite} from "../gsap/TweenMax";
               loadAnimate.to(".animation", 0.2, {rotation:"40deg"});
               loadAnimate.to(".animation", 0.2, {rotation:"0deg"});
               TweenMax.from(".animation-input",1,{width:"0", opacity:"0"});
+              console.log("question.question\n");
+              console.log(this.question);
     }, 
     name: 'landing-page',
     components: { Question,TweenMax,Power2,TimelineLite },
@@ -99,7 +101,7 @@ import {TweenMax, Power2, TimelineLite} from "../gsap/TweenMax";
             let $this = this;
             this.questions.forEach(function(element,index) {
                 element.html =  $this.$refs.questionRef[index].$refs.answer.innerHTML;
-                element.question =  $this.$refs.questionRef[index].textQ;
+                element.question =  $this.$refs.questionRef[index].$refs.question.innerHTML;
             });
             let dataStr = JSON.stringify(this.questions);
             let dataUri = 'data:application/json;charset=utf-8,'+encodeURIComponent(dataStr);
@@ -151,7 +153,7 @@ import {TweenMax, Power2, TimelineLite} from "../gsap/TweenMax";
                             this.jsondata.forEach(function(element,index) { {
 
                           $this.$refs.questionRef[index].$refs.answer.innerHTML = element.html;
-                          $this.$refs.questionRef[index].textQ = element.question;
+                          $this.$refs.questionRef[index].$refs.question.innerHTML = element.question;
                           TweenMax.to($this.$refs.questionRef[index].$el,1.5,{display: "block"});   
                           if(index%2===0) {
                                 TweenMax.from($this.$refs.questionRef[index].$el,1.5,{x:1000,opacity:0.2}); 
@@ -220,6 +222,7 @@ import {TweenMax, Power2, TimelineLite} from "../gsap/TweenMax";
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-bottom: 20px;
   }
 
   main > div { flex-basis: 50%; }
@@ -256,7 +259,7 @@ import {TweenMax, Power2, TimelineLite} from "../gsap/TweenMax";
   .new-font-size {
     border: solid black 2px;
     text-align: center;
-    font-size: 15px;
+    font-size: 18px;
     width: 35px;
     height: 35px;
     border-radius: 10px;

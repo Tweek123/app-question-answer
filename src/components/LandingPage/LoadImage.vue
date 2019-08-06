@@ -44,7 +44,7 @@
           },
             watch: {
           ev: function() {
-              if(this.$refs.elnt.children[0]=== undefined)
+              if(this.$refs.elnt.children[0] === undefined)
               {
                 console.log(this.$refs.elnt.children[0]);
                 this.$emit('delete-image', this.id);
