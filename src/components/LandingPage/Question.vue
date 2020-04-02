@@ -52,11 +52,6 @@
   export default {
       components: { LoadImage },
       props: {
-        a: Number,
-        b: Array,
-        c: Number,
-        d: String,
-        e: Boolean,
         imageId: Number,
         text: String
       },
