@@ -13,7 +13,7 @@
     "axios": "^0.18.0",
     "cordova": "^9.0.0",
     "cordova-plugin-qrscanner": "^3.0.1",
-    "electron": "4.0.5",
+    "electron": "18.3.7",
     "gsap": "^2.1.2",
     "vue-i18n": "^7.3.3",
     "yarn": "^1.15.2",
